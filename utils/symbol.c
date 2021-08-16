@@ -1033,7 +1033,7 @@ static void load_module_symbol(struct symtabs *symtabs, struct uftrace_module *m
 		if (access(symfile, F_OK) == 0) {
 			if (check_symbol_file(symfile, buf, sizeof(buf),
 					      build_id, sizeof(build_id)) > 0 &&
-			    (strcmp(buf, m->name) || strcmp(build_id, m->build_id))) {
+			    (build_id[0] && strcmp(build_id, m->build_id))) {
 				char *new_file;
 
 				new_file = make_new_symbol_filename(symfile,
